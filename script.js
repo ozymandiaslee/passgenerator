@@ -18,20 +18,25 @@ var length = prompt("Length of password?");
 var characters = "";
 
 function generateCharset() {
-    
+
     var charCheckArray = [specCharCheck, numCharCheck, lowerCaseCheck, upperCaseCheck, specialChars, numericChars, uppercaseChars, lowercaseChars];
     var charSet = "";
-    for ( var i = 0 ; i < 4; i++) {
-        if (charCheckArray[i] === true) {
-            charSet += charCheckArray[i+4];
+    if (specCharCheck === true || numCharCheck === true || lowerCaseCheck === true || upperCaseCheck === true) {
+        for (var i = 0; i < 4; i++) {
+            if (charCheckArray[i] === true) {
+                charSet += charCheckArray[i + 4];
+            }
+            else {
+                charSet = charSet;
+            }
         }
-        else {
-            charSet = charSet;
+        console.log(charSet);
+        return charSet;
+    }
+    else {
+            alert("Reload the page and select a value!");
         }
     }
-    console.log(charSet);
-    return charSet;
-}
 
 generateCharset();
 
@@ -39,8 +44,8 @@ function generatePassword() {
     var charSet = generateCharset();
     var result = "";
     var passlength = parseInt(length);
-	for (var i = 0; i < passlength; i++)
-		result += charSet.charAt(Math.floor(Math.random() * charSet.length));
+    for (var i = 0; i < passlength; i++)
+        result += charSet.charAt(Math.floor(Math.random() * charSet.length));
     passEl.textContent = result;
     return result;
 }
