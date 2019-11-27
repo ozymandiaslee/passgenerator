@@ -2,7 +2,7 @@ var passEl = document.querySelector("#password");
 var lengthEl = document.querySelector("#length");
 var charEl = document.querySelector("#char");
 var generateBt = document.querySelector("#generate");
-
+var copyBt = document.querySelector("#copy");
 
 var specialChars = "!#$%&*+=-:;<>?";
 var numericChars = "1234567890";
@@ -42,8 +42,16 @@ function generatePassword() {
 	for (var i = 0; i < passlength; i++)
 		result += charSet.charAt(Math.floor(Math.random() * charSet.length));
     passEl.textContent = result;
+    return result;
 }
 
+function doCopy() {
+    var copyText = document.getElementById("password");
+    copyText.select();
+    document.execCommand("copy");
+}
+
+copyBt.addEventListener("click", doCopy);
 generateBt.addEventListener("click", generatePassword);
 
 
